@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
+import { links } from './data';
 function App() {
+  const [menuLinks, setMenuLinks] = useState([]);
+
+  useEffect(() => {
+    setMenuLinks(links);
+  });
+
   return (
     <>
       <nav>
@@ -27,21 +34,14 @@ function App() {
           </div>
           <div className="links-container" style={{ height: '0px' }}>
             <ul className="links">
-              <li>
-                <a href="/">home</a>
-              </li>
-              <li>
-                <a href="/about">about</a>
-              </li>
-              <li>
-                <a href="/projects">projects</a>
-              </li>
-              <li>
-                <a href="/contact">contact</a>
-              </li>
-              <li>
-                <a href="/profile">profile</a>
-              </li>
+              {' '}
+              {menuLinks.map((menu) => {
+                return (
+                  <li>
+                    <a href="/">{menu.text}</a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <ul className="social-icons">
